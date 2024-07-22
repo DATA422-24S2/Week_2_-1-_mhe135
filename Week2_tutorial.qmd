@@ -1,0 +1,46 @@
+---
+title: "Comparison of Cylindar Count to Engine Displacement"
+author: "Miaobing He"
+format: pdf
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+mtcars
+
+```
+
+```{r}
+library(tidyverse)
+library(knitr)
+install.packages("kableExtra")
+library(kableExtra)
+```
+
+```{r}
+mean_disp <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(mean_disp = mean(disp, na.rm = TRUE))
+mean_disp %>%
+  kable(col.names = c("Cylinders", "Mean Displacement"), format = "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
